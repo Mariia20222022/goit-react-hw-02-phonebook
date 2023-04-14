@@ -17,8 +17,8 @@ function Filter({ value, onChange }) {
     </div>
   );
 }
-Filter.PropTypes = {
+Filter.propTypes = {
   value: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 export default Filter;
