@@ -1,0 +1,43 @@
+.form {
+  width: 600px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.button {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 40px;
+  font-size: 16px;
+  background-color: gainsboro;
+  margin-left: 212px;
+  margin-right: 212px;
+}
+.button:hover {
+  border: 1px solid blue;
+}
+.button:focus {
+  border: 1px solid blue;
+}
+.field {
+  display: flex;
+  gap: 40px;
+}
+.field:nth-child(2) {
+  margin-top: 20px;
+  gap: 14px;
+}
+.input {
+  padding: 10px;
+  font-size: 16px;
+}
+.input:focus {
+  border: 1px solid blue;
+}
+.input:hover {
+  border: 1px solid blue;
+}
+.label {
+  font-size: 24px;
+  font-weight: 700;
+}

@@ -1,0 +1,17 @@
+.label {
+  font-size: 24px;
+  padding-left: 30px;
+}
+.field {
+  display: flex;
+  gap: 10px;
+}
+.input {
+  padding: 10px;
+}
+.input:hover {
+  border: 1px solid blue;
+}
+.input:focus {
+  border: 1px solid blue;
+}
