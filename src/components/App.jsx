@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
+
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import css from './App.module.css';
 class App extends Component {
-  static propTypes = {
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      })
-    ),
-    filter: PropTypes.string.isRequired,
-    addContact: PropTypes.func.isRequired,
-    handleFilterChange: PropTypes.func.isRequired,
-    filterContacts: PropTypes.func.isRequired,
-    deleteContact: PropTypes.func.isRequired,
-  };
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -35,7 +21,7 @@ class App extends Component {
       contact.name.toLowerCase().includes(name.toLowerCase())
     );
     if (usedName) {
-      alert(`${name} is already in contacts`, 'sorry');
+      alert(`${name} is already in contacts`);
       return;
     }
 
@@ -45,7 +31,7 @@ class App extends Component {
       number,
     };
     this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
+      contacts: [ ...contacts,contact],
     }));
   };
 
