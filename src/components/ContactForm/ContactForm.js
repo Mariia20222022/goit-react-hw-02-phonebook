@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
+
 class ContactForm extends Component {
   state = {
     name: '',
@@ -16,26 +17,31 @@ class ContactForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
     const { name, number } = this.state;
 
+    const existingNames = this.props.contacts.map(contact => contact.name);
+    if (existingNames.includes(name)) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
+
     const newContact = {
-      name: name,
       id: nanoid(),
-      number: number,
+      name,
+      number,
     };
+
     this.props.onSubmit(newContact);
-    this.setState({
-      name: '',
-      number: '',
-    });
+
     this.resetForm();
   };
+
   resetForm = () => {
     this.setState({ name: '', number: '' });
   };
-  render() {
-    // const { name, number } = this.state;
 
+  render() {
     return (
       <div>
         <form className={css.form} onSubmit={this.handleSubmit}>
@@ -51,6 +57,7 @@ class ContactForm extends Component {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
               onChange={this.handleChange}
+              value={this.state.name}
             />
           </div>
           <div className={css.field}>
@@ -65,6 +72,7 @@ class ContactForm extends Component {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
               onChange={this.handleChange}
+              value={this.state.number}
             />
           </div>
           <button className={css.button} type="submit">
@@ -75,7 +83,15 @@ class ContactForm extends Component {
     );
   }
 }
+
 ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired
+  ),
 };
+
 export default ContactForm;
